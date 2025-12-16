@@ -319,6 +319,17 @@ def process_folder(folder_path: str) -> Tuple[int, int]:
         else:
             failed_count += 1
 
+    # Log completion summary
+    total = success_count + failed_count
+    logger.info("=" * 70)
+    logger.info("✅ FOLDER PROCESSING COMPLETE!")
+    logger.info("=" * 70)
+    logger.info(f"Total files processed: {total}")
+    logger.info(f"✅ Successfully cleaned: {success_count}")
+    logger.info(f"❌ Failed: {failed_count}")
+    logger.info(f"📁 Output folder: {output_dir}")
+    logger.info("=" * 70)
+
     return success_count, failed_count
 
 
@@ -341,6 +352,17 @@ def process_files(file_paths: List[str]) -> Tuple[int, int]:
             success_count += 1
         else:
             failed_count += 1
+
+    # Log completion summary
+    total = success_count + failed_count
+    logger.info("=" * 70)
+    logger.info("✅ FILE PROCESSING COMPLETE!")
+    logger.info("=" * 70)
+    logger.info(f"Total files processed: {total}")
+    logger.info(f"✅ Successfully cleaned: {success_count}")
+    logger.info(f"❌ Failed: {failed_count}")
+    logger.info(f"📁 Output folder: {output_dir}")
+    logger.info("=" * 70)
 
     return success_count, failed_count
 
@@ -404,9 +426,15 @@ class PDFCleanerGUI:
 
         if file_paths:
             self.log_message(f"Processing {len(file_paths)} files...")
+            self.log_message("-" * 70)
             success, failed = process_files(list(file_paths))
-            self.log_message(f"\n✅ Success: {success} | ❌ Failed: {failed}")
-            self.status_var.set(f"Done! Success: {success}, Failed: {failed}")
+            self.log_message("-" * 70)
+            self.log_message(f"✅ PROCESSING COMPLETE!")
+            self.log_message(f"Total files: {success + failed}")
+            self.log_message(f"✅ Successfully cleaned: {success}")
+            self.log_message(f"❌ Failed: {failed}")
+            self.log_message("-" * 70)
+            self.status_var.set(f"✅ Done! Success: {success}, Failed: {failed}")
 
     def select_folder(self):
         """Select a folder of PDFs."""
@@ -414,9 +442,15 @@ class PDFCleanerGUI:
 
         if folder_path:
             self.log_message(f"Processing folder: {folder_path}")
+            self.log_message("-" * 70)
             success, failed = process_folder(folder_path)
-            self.log_message(f"\n✅ Success: {success} | ❌ Failed: {failed}")
-            self.status_var.set(f"Done! Success: {success}, Failed: {failed}")
+            self.log_message("-" * 70)
+            self.log_message(f"✅ PROCESSING COMPLETE!")
+            self.log_message(f"Total files: {success + failed}")
+            self.log_message(f"✅ Successfully cleaned: {success}")
+            self.log_message(f"❌ Failed: {failed}")
+            self.log_message("-" * 70)
+            self.status_var.set(f"✅ Done! Success: {success}, Failed: {failed}")
 
 
 # ============================================================================
