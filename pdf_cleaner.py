@@ -26,7 +26,6 @@ from docx.shared import Pt, RGBColor
 
 # Keywords to identify and remove sections (case-insensitive)
 SECTION_KEYWORDS = {
-    'abstract': ['abstract', 'summary'],
     'keywords': ['keywords', 'key words', 'index terms'],
     'acknowledgments': ['acknowledgments', 'acknowledgements'],
     'funding': ['funding statement', 'financial disclosure', 'grant', 'supported by'],

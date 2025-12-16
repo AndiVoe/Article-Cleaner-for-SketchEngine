@@ -10,8 +10,7 @@ A powerful Python tool for extracting and cleaning text from academic research P
 
 - **Intelligent Text Extraction**: Uses PyMuPDF for accurate PDF text extraction
 - **Comprehensive Content Removal**:
-  - ✅ Article metadata (abstract, keywords, author info)
-  - ✅ Citations and references
+    - ✅ Keywords, Index Terms
   - ✅ Article history (Received, Revised, Accepted dates)
   - ✅ Conflict of interest statements
   - ✅ Funding statements
