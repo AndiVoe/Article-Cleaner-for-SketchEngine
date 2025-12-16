@@ -1,0 +1,18 @@
+# PDF Cleaner - Requirements
+
+# Core dependencies
+PyMuPDF==1.26.7
+python-docx==0.8.11
+
+# Optional - for enhanced features
+# uncomment if needed:
+# pillow==11.0.0  # For image processing in PDFs
+# pytesseract==0.3.10  # For OCR (requires Tesseract installed)
+# pdfplumber==0.10.3  # Alternative PDF extraction
+
+# Development dependencies
+# Uncomment these if developing:
+# pytest==8.0.0
+# black==24.1.1
+# pylint==3.0.3
+# flake8==7.0.0
