@@ -335,6 +335,8 @@ def process_folder(folder_path: str) -> Tuple[int, int]:
 def process_files(file_paths: List[str]) -> Tuple[int, int]:
     """
     Process specific PDF files.
+    Each file's cleaned output is saved in a 'cleaned_articles' subfolder
+    in the SAME directory as the source PDF.
 
     Args:
         file_paths: List of PDF file paths
@@ -344,9 +346,12 @@ def process_files(file_paths: List[str]) -> Tuple[int, int]:
     """
     success_count = 0
     failed_count = 0
-    output_dir = Path.cwd() / "cleaned_articles"
 
     for file_path in file_paths:
+        # Get the directory of the source PDF
+        pdf_dir = Path(file_path).parent
+        output_dir = pdf_dir / "cleaned_articles"
+        
         if process_pdf(file_path, output_dir):
             success_count += 1
         else:
@@ -360,7 +365,7 @@ def process_files(file_paths: List[str]) -> Tuple[int, int]:
     logger.info(f"Total files processed: {total}")
     logger.info(f"✅ Successfully cleaned: {success_count}")
     logger.info(f"❌ Failed: {failed_count}")
-    logger.info(f"📁 Output folder: {output_dir}")
+    logger.info(f"📁 Files saved in 'cleaned_articles/' folders in each PDF's directory")
     logger.info("=" * 70)
 
     return success_count, failed_count
