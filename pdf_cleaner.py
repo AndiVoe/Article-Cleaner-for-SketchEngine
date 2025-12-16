@@ -132,6 +132,22 @@ def remove_section_by_keyword(text: str, keywords: List[str]) -> str:
     return text
 
 
+def remove_invalid_chars(text: str) -> str:
+    """
+    Remove invalid XML characters from text (control characters, NULL bytes, etc).
+    These cause issues when saving to .docx format.
+
+    Args:
+        text: Text possibly containing invalid characters
+
+    Returns:
+        Text with invalid characters removed
+    """
+    # Remove NULL bytes and other control characters (except tab, newline, carriage return)
+    text = ''.join(char for char in text if ord(char) >= 32 or char in '\t\n\r')
+    return text
+
+
 def clean_text(text: str) -> str:
     """
     Clean extracted PDF text by removing headers, footers, and sections.
@@ -208,6 +224,9 @@ def save_to_docx(text: str, output_path: str) -> bool:
         Success flag
     """
     try:
+        # Sanitize text to remove invalid XML characters
+        text = remove_invalid_chars(text)
+
         doc = Document()
 
         # Add text in paragraphs
