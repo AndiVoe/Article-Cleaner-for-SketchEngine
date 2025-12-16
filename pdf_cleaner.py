@@ -493,7 +493,7 @@ def main():
         # Process files
         print(f"Processing {len(args.files)} files...")
         success, failed = process_files(args.files)
-        print(f"\n✅ Success: {success} | ❌ Failed: {failed}")
+        print(f"\nSuccess: {success} | Failed: {failed}")
 
 
 if __name__ == "__main__":
