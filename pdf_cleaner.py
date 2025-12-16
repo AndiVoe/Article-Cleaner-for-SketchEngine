@@ -409,12 +409,16 @@ def main():
         description="Clean research PDFs by removing headers, footers, abstracts, and references."
     )
 
-    input_group = parser.add_mutually_exclusive_group(required=True)
+    input_group = parser.add_mutually_exclusive_group(required=False)
     input_group.add_argument("files", nargs="*", help="PDF file paths to process")
     input_group.add_argument("--folder", "-f", help="Process all PDFs in a folder (recursive)")
     input_group.add_argument("--gui", "-g", action="store_true", help="Launch GUI mode")
 
     args = parser.parse_args()
+
+    # If no arguments provided, launch GUI
+    if not args.files and not args.folder and not args.gui:
+        args.gui = True
 
     if args.gui:
         # Launch GUI
